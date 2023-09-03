@@ -35,7 +35,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select  u from users u where u.nickname is null and u.active = true")
     List<User> getEmptyNickname();
-
-//    @Query("select u from users u limit 10")
-//    List<User> getAdminInfo();
 }
