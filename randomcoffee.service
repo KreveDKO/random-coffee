@@ -1,0 +1,12 @@
+[Unit]
+Description=описание
+After=syslog.target
+
+[Service]
+User=root
+Environment="LOGGING_FILE_PATH=/var/log/random-coffee/"
+Environment="TZ=Europe/Moscow"
+ExecStart=/usr/bin/java -jar /var/random-coffee/randomcoffee-1.0.0.jar --spring.config.location=/var/random-coffee/config/
+
+[Install]
+WantedBy=multi-user.target
