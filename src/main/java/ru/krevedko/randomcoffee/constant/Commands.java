@@ -10,7 +10,6 @@ public class Commands {
     public static final String CANCEL = "/cancel";
     public static final String BAN = "/ban";
     public static final String UNBAN = "/unban";
-    public static final String FORCE_PAIR = "/force_pair";
     public static final String ADMIN_PANEL = "/admin";
     public static final String SHOW_INFO = "/show_info";
     public static final String ADMIN_SHOW_INFO = "/admin_show_info";

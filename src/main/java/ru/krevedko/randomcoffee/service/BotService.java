@@ -198,10 +198,6 @@ public class BotService extends TelegramLongPollingBot {
                 else
                     sendMessage(chatId, phrases.getEditError());
                 return;
-            } else if (Commands.FORCE_PAIR.equals(text)) {
-//                foundPair(true);
-//                sendMessage(chatId, "Уведомления отправлены");
-                return;
             } else if (Commands.ADMIN_PANEL.equals(text)) {
                 sendMessage(chatId, phrases.getAdminPanel(), buttons.getAdminButtons());
                 return;
