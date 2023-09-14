@@ -12,7 +12,8 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class BotInitializer {
     private final BotService telegramBot;
     @Autowired
-    public BotInitializer(BotService telegramBot) {
+    public BotInitializer(
+            BotService telegramBot) {
         this.telegramBot = telegramBot;
     }
 

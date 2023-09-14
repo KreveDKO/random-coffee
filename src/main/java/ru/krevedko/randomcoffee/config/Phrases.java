@@ -3,6 +3,7 @@ package ru.krevedko.randomcoffee.config;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Data
 @Configuration
@@ -42,8 +43,8 @@ public class Phrases {
 
     String userBanned;
     String edit;
-    private String adminPanel;
-    private String adminEnterNickname;
-    private String adminUserNotFound;
-    private String adminCurrentData;
+    String adminPanel;
+    String adminEnterNickname;
+    String adminUserNotFound;
+    String adminCurrentData;
 }

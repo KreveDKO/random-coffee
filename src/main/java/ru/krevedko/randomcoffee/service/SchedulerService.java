@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import ru.krevedko.randomcoffee.config.Buttons;
 import ru.krevedko.randomcoffee.config.FileConfig;
 import ru.krevedko.randomcoffee.config.Phrases;
 import ru.krevedko.randomcoffee.model.User;
@@ -24,10 +25,11 @@ import java.util.Optional;
 @EnableScheduling
 public class SchedulerService {
 
-    private final BotService botService;
+    private final IBotService botService;
     private final UserRepository userRepository;
     private final PairRepository pairRepository;
     private final Phrases phrases;
+    private final Buttons buttons;
     private final FileConfig files;
 
     @Scheduled(cron = "0 0 9 * * *")
@@ -88,12 +90,7 @@ public class SchedulerService {
         List<Pair> pairs = pairRepository.findDailyPairs();
         for (Pair pair : pairs) {
             User user = userRepository.findById(pair.getRightUserId()).get();
-            File feedBackFile = new File(files.getFeedback());
-            if (feedBackFile.exists()) {
-
-            } else {
-                botService.sendFeedBack(pair.getLeftUserId(), pair.getId(), user.getNickname());
-            }
+            botService.sendMessage(pair.getLeftUserId(), phrases.getFeedBack().replace("{nickname}", user.getNickname()), buttons.getFeedbackButtons(pair.getId()));
         }
     }
 

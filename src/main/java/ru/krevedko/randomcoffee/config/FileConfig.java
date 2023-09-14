@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "files")
 public class FileConfig {
-    private String foundPair;
-    private String feedback;
+    String foundPair;
+    String feedback;
 }

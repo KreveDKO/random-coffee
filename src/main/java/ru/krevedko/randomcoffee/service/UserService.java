@@ -20,15 +20,14 @@ public class UserService {
     private final PairRepository pairRepository;
     private final Phrases phrases;
 
-    public User getOrCreateUser(Message message) throws NullNicknameException {
-        Long id = message.getFrom().getId();
-        if (message.getFrom().getUserName() == null || message.getFrom().getUserName().isEmpty()) {
+    public User getOrCreateUser(Long id, String nickname) throws NullNicknameException {
+        if (nickname == null || nickname.isEmpty()) {
             throw new NullNicknameException();
         }
-        Optional<User> userOpt = userRepository.findById(message.getFrom().getId());
+        Optional<User> userOpt = userRepository.findById(id);
         User user;
         if (userOpt.isEmpty()) {
-            user = new User(id, message.getFrom().getUserName());
+            user = new User(id, nickname);
             userRepository.save(user);
         } else {
             user = userOpt.get();
@@ -44,7 +43,6 @@ public class UserService {
             userRepository.save(user);
         });
     }
-
 
     public String statusMessage(long chatId) {
         Optional<User> user = userRepository.findDailyPair(chatId);
@@ -70,4 +68,13 @@ public class UserService {
         });
         return true;
     }
+
+    public void setActivateUser(Long userId, boolean active){
+
+        userRepository.findById(userId).ifPresent(user -> {
+            user.setActive(active);
+            userRepository.save(user);
+        });
+    }
+
 }
